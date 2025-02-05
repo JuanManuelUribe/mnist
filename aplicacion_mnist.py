@@ -41,7 +41,7 @@ def main():
         .main-title {
             font-size: 32px;
             font-weight: bold;
-            color: #3C8033;
+            color: #800080;
             text-align: center;
         }
         .description {
@@ -73,7 +73,7 @@ def main():
     st.sidebar.write("- Parámetro de distancia: *p = 3* (distancia de Minkowski)")
     st.sidebar.subheader("Modelos evaluados:")
     st.sidebar.write("Se compararon modelos como *DecisionTreeClassifier* y *KNeighborsClassifier* con distintos métodos de escalado (StandardScaler, MinMaxScaler y sin escalado).")
-    st.sidebar.write("El modelo seleccionado obtuvo la mejor métrica de AUC: *0.8717*.")
+    st.sidebar.write("El modelo seleccionado obtuvo un AUC de *0.8717*.")
 
     # Widget de subida de archivos
     uploaded_file = st.file_uploader("Selecciona una imagen (PNG, JPG, JPEG):", type=["png", "jpg", "jpeg"])

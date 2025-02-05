@@ -41,7 +41,7 @@ def main():
         .main-title {
             font-size: 32px;
             font-weight: bold;
-            color: #2E86C1;
+            color: #3C8033;
             text-align: center;
         }
         .description {
@@ -65,6 +65,16 @@ def main():
     st.markdown('<div class="main-title">Clasificación de Dígitos MNIST</div>', unsafe_allow_html=True)
     st.markdown('<div class="description">Sube una imagen de un dígito y la clasificaremos usando un modelo preentrenado.</div>', unsafe_allow_html=True)
 
+    # Sidebar con información del modelo
+    st.sidebar.title("Mejor Modelo")
+    st.sidebar.write("El mejor modelo encontrado fue *KNeighborsClassifier* sin escalado de datos.")
+    st.sidebar.subheader("Hiperparámetros óptimos:")
+    st.sidebar.write("- Número de vecinos: *4*")
+    st.sidebar.write("- Parámetro de distancia: *p = 3* (distancia de Minkowski)")
+    st.sidebar.subheader("Modelos evaluados:")
+    st.sidebar.write("Se compararon modelos como *DecisionTreeClassifier* y *KNeighborsClassifier* con distintos métodos de escalado (StandardScaler, MinMaxScaler y sin escalado).")
+    st.sidebar.write("El modelo seleccionado obtuvo la mejor métrica de AUC: *0.8717*.")
+
     # Widget de subida de archivos
     uploaded_file = st.file_uploader("Selecciona una imagen (PNG, JPG, JPEG):", type=["png", "jpg", "jpeg"])
 
@@ -72,7 +82,7 @@ def main():
         # Mostrar la imagen subida
         st.subheader("Vista previa de la imagen subida")
         image = Image.open(uploaded_file)
-
+        
         # Procesar la imagen
         preprocessed_image = preprocess_image(image)
 
@@ -86,7 +96,7 @@ def main():
 
         # Guardar la imagen
         file_path = save_image(uploaded_file)
-        st.success(f"Imagen guardada")
+        st.success(f"Imagen guardada correctamente")
 
         # Diccionario de clases para MNIST
         mnist_classes = {i: str(i) for i in range(10)}
@@ -97,11 +107,11 @@ def main():
                 model = load_model()
                 prediction = model.predict(preprocessed_image)
                 
-                # Verificar valores de predicción
-                st.success(f"La imagen fue clasificada como: {prediction}")
+                # Mostrar resultado de predicción
+                st.success(f"La imagen fue clasificada como: {prediction[0]}")
 
     # Footer
     st.markdown('<div class="footer">© 2025 - Clasificación de imágenes con Streamlit</div>', unsafe_allow_html=True)
 
-if __name__ == "__main__":
-    main()
+if _name_ == "_main_":
+    main()

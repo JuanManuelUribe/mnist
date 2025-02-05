@@ -113,5 +113,5 @@ def main():
     # Footer
     st.markdown('<div class="footer">© 2025 - Clasificación de imágenes con Streamlit</div>', unsafe_allow_html=True)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
